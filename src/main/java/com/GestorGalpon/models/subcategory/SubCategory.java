@@ -1,6 +1,7 @@
 package com.GestorGalpon.models.subcategory;
 
 import com.GestorGalpon.models.category.Category;
+import com.GestorGalpon.models.product.Product;
 import com.GestorGalpon.models.subcategory.dto.RequestSubCategory;
 
 import jakarta.persistence.*;
@@ -10,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,6 +35,8 @@ public class SubCategory {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+    @OneToMany
+    private List<Product> products;
 
 
     public SubCategory(RequestSubCategory requestSubCategory){

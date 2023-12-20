@@ -3,6 +3,8 @@ package com.GestorGalpon.models.orderdetails;
 import java.util.Date;
 import java.util.List;
 
+import com.GestorGalpon.models.product.Product;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +17,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
+
+@Data
+@EqualsAndHashCode
 @Table(name = "order_details")
 @NoArgsConstructor
 public class OrderDetail {
