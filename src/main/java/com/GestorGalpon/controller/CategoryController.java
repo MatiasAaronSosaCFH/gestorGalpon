@@ -30,4 +30,5 @@ public class CategoryController {
         ResponseCategory response = categoryServiceImp.createCategory(new Category(category));
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+    
 }

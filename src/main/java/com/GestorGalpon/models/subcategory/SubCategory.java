@@ -1,6 +1,8 @@
 package com.GestorGalpon.models.subcategory;
 
 import com.GestorGalpon.models.category.Category;
+import com.GestorGalpon.models.subcategory.dto.RequestSubCategory;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,4 +33,15 @@ public class SubCategory {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
+
+    public SubCategory(RequestSubCategory requestSubCategory){
+
+        this.name = requestSubCategory.name();
+        this.createAt = new Date();
+        this.updateAt = new Date();
+        this.isPresent = true;
+        this.category = null;
+        
+    }
 }
