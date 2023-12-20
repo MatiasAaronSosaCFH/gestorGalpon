@@ -1,4 +1,9 @@
 package com.GestorGalpon.models.subcategory.dto;
 
-public record RequestSubCategory() {
+import jakarta.validation.constraints.NotBlank;
+
+public record RequestSubCategory(@NotBlank String name) {
+
+    
+
 }
