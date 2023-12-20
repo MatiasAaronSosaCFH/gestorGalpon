@@ -26,6 +26,7 @@ public class Product {
     private String name;
     @Column(name = "prive")
     private Double price;
+    
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "category_id")
     private Category category;
