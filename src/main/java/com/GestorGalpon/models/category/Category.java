@@ -2,6 +2,7 @@ package com.GestorGalpon.models.category;
 
 
 import com.GestorGalpon.models.category.dto.RequestCategory;
+import com.GestorGalpon.models.product.Product;
 import com.GestorGalpon.models.subcategory.SubCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,8 @@ public class Category {
     private Boolean isPresent;
     @OneToMany(cascade = CascadeType.ALL)
     private List<SubCategory> subCategories;
+    @OneToMany
+    private List<Product> products;
 
     public Category(RequestCategory category){
         this.name = category.name();
