@@ -3,6 +3,7 @@ package com.GestorGalpon.models.orderdetails;
 import java.util.Date;
 import java.util.List;
 
+import com.GestorGalpon.models.orderdetails.dto.RequestOrderDetail;
 import com.GestorGalpon.models.product.Product;
 
 import jakarta.persistence.Column;
@@ -33,6 +34,9 @@ public class OrderDetail {
 
     @Column(name = "sub_total")
     private Double subTotal;
+    
+    @Column(name = "create_at")
+    private Date createAt;
 
     @Column(name = "update_at")
     private Date updateAt;
@@ -40,5 +44,12 @@ public class OrderDetail {
     @Column(name = "is_present")
     private Boolean isPresent;
 
+    public OrderDetail(RequestOrderDetail requestOrderDetail){
 
+        this.products = new Product(requestOrderDetail.products());
+        this.subTotal = requestOrderDetail.subTotal();
+        this.createAt = new Date();
+        this.updateAt = new Date();
+        this.isPresent = true;
+    }
 }
