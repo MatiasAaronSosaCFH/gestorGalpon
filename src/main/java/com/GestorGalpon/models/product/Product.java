@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,9 +30,9 @@ public class Product {
     @Column(name = "prive")
     private Double price;
     
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name = "order_detail_id")
-    private OrderDetail orderDitail;
+    @OneToMany()
+    private List<OrderDetail> orderDitail;
+    
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "category_id")
     private Category category;

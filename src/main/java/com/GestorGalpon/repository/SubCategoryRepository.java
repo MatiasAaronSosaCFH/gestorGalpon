@@ -17,22 +17,22 @@ import com.GestorGalpon.models.category.Category;
 public interface SubCategoryRepository extends JpaRepository<SubCategory,Long>{
 
 
-    @Query("SELECT sc FROM SubCatergory sc WHERE sc.id = :id AND sc.isPresent = true")
+    @Query("SELECT sc FROM SubCategory sc WHERE sc.id = :id AND sc.isPresent = true")
     Optional<SubCategory> findSubCategoryById(@Param("id") Long id);
 
-    @Query("SELECT sc FROM SubCatergory sc WHERE sc.isPresent = true")
+    @Query("SELECT sc FROM SubCategory sc WHERE sc.isPresent = true")
     List<SubCategory> findSubCategoriesAvailable();
 
-    @Query("SELECT sc FROM SubCatergory sc WHERE sc.name = :name and c.isPresent = true")
+    @Query("SELECT sc FROM SubCategory sc WHERE sc.name = :name and sc.isPresent = true")
     List<SubCategory> findSubCategoriesByName(@Param("name") String name);
 
-    @Query("SELECT sc FROM SubCatergory sc WHERE sc.createAt BETWEEN :start AND :final AND sc.isPresent = true")
+    @Query("SELECT sc FROM SubCategory sc WHERE sc.createAt BETWEEN :start AND :final AND sc.isPresent = true")
     List<SubCategory> findSubCategoriesByCreate(@Param("start")Date start ,@Param("final")Date last);
 
-    @Query("UPDATE SubCatergory sc SET sc.name = :name, sc.updateAt = :update WHERE sc.id = :id")
+    @Query("UPDATE SubCategory sc SET sc.name = :name, sc.updateAt = :update WHERE sc.id = :id")
     Optional<SubCategory> updateName(@Param("name") String name, @Param("id") Long id, @Param("update") Date update);
 
-    @Query("UPDATE SubCatergory sc SET sc.name = :name WHERE sc.id = :id")
+    @Query("UPDATE SubCategory sc SET sc.name = :name WHERE sc.id = :id")
     Optional<SubCategory> modifySubCategory(@Param("name") String name, @Param("id") Long id);
 
     @Query("SELECT sc FROM SubCategory sc WHERE sc.category = :category")
