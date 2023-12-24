@@ -6,13 +6,7 @@ import java.util.List;
 import com.GestorGalpon.models.orderdetails.dto.RequestOrderDetail;
 import com.GestorGalpon.models.product.Product;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,8 +23,9 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    private List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product products;
 
     @Column(name = "sub_total")
     private Double subTotal;
@@ -46,7 +41,7 @@ public class OrderDetail {
 
     public OrderDetail(RequestOrderDetail requestOrderDetail){
 
-        this.products = new Product(requestOrderDetail.products());
+        this.products = new Product(requestOrderDetail.product());
         this.subTotal = requestOrderDetail.subTotal();
         this.createAt = new Date();
         this.updateAt = new Date();
