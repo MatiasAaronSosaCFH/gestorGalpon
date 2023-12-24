@@ -1,7 +1,6 @@
 package com.GestorGalpon.service.implementation;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.GestorGalpon.models.orderdetails.OrderDetail;
 import com.GestorGalpon.models.orderdetails.dto.RequestOrderDetail;
 import com.GestorGalpon.models.orderdetails.dto.ResponseOrderDetail;
-import com.GestorGalpon.models.product.dto.RequestProduct;
 import com.GestorGalpon.repository.OrderDetailRepository;
 import com.GestorGalpon.service.abstraction.OrderDetailService;
 
@@ -23,10 +21,7 @@ public class OrderDetailServiceImp implements OrderDetailService {
 
     private final OrderDetailRepository orderDetailRepository;
 
-    @Override
-    public List<OrderDetail> findAllOrderDetails() {
-        return orderDetailRepository.findAll();
-    }
+
 
     @Override
     public ResponseOrderDetail createOrderDetail(RequestOrderDetail orderDetail) {
@@ -35,37 +30,31 @@ public class OrderDetailServiceImp implements OrderDetailService {
 
     @Override
     public ResponseOrderDetail findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        
+        return new ResponseOrderDetail(orderDetailRepository.findById(id).orElse(null));
     }
 
     @Override
-    public List<ResponseOrderDetail> findOrderDetailsByCreate(Date createAt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findOrderDetailsByCreate'");
+    public ResponseOrderDetail deleteOrderDetailById(Long orderDetailId) {
+        orderDetailRepository.deleteById(orderDetailId);
+        return null;
     }
 
     @Override
-    public ResponseOrderDetail deleteProductById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteProductById'");
+    public ResponseOrderDetail updateOrderDetail(Long orderDetailId, Integer itemsNumber) {
+
+        return  new ResponseOrderDetail(orderDetailRepository.updateOrderDetail(orderDetailId, itemsNumber, new Date()).orElse(null));
     }
 
     @Override
-    public ResponseOrderDetail insertProduct(RequestProduct product) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertProduct'");
+    public ResponseOrderDetail updateOrderDetailIsPresent(RequestOrderDetail orderDetail) {
+
+        if(orderDetail.isPresent()){
+            return new ResponseOrderDetail(orderDetailRepository.updateIsPresent(false));
+        }else{
+            return new ResponseOrderDetail(orderDetailRepository.updateIsPresent(true));
+        }
+
+
     }
-
-    @Override
-    public ResponseOrderDetail subTotal(RequestOrderDetail orderDetail) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'subTotal'");
-    }
-
-  
-    
-
-
-
 }
