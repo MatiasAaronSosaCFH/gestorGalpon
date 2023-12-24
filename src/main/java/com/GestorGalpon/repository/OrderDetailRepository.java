@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import com.GestorGalpon.models.orderdetails.OrderDetail;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail,Long>{
@@ -20,6 +19,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail,Long>{
    @Modifying
    @Query("UPDATE OrderDetail od SET od.isPresent = :isPresent")
    OrderDetail updateIsPresent(@Param("isPresent") Boolean isPresent);
-    
+
 }
 
