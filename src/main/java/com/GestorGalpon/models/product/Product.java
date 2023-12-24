@@ -29,10 +29,8 @@ public class Product {
     private String name;
     @Column(name = "prive")
     private Double price;
-    
-    @OneToMany()
+    @OneToMany
     private List<OrderDetail> orderDitail;
-    
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "category_id")
     private Category category;
@@ -45,7 +43,6 @@ public class Product {
     private Date createAt;
     @Column(name = "update_at")
     private Date updateAt;
-
 
     public Product(RequestProduct product){
         this.name = product.name();

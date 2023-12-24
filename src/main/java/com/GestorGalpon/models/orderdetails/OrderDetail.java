@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.GestorGalpon.models.orderdetails.dto.RequestOrderDetail;
 import com.GestorGalpon.models.product.Product;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +32,7 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+
     private Product product;
 
     @Column(name = "items_number")
