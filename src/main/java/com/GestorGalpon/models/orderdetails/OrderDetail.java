@@ -1,7 +1,6 @@
 package com.GestorGalpon.models.orderdetails;
 
 import java.util.Date;
-import java.util.List;
 
 import com.GestorGalpon.models.orderdetails.dto.RequestOrderDetail;
 import com.GestorGalpon.models.product.Product;
@@ -12,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -50,7 +48,7 @@ public class OrderDetail {
     @Column(name = "is_present")
     private Boolean isPresent;
 
-  
+
     public OrderDetail(RequestOrderDetail requestOrderDetail){
 
         this.product = new Product(requestOrderDetail.product());
@@ -59,4 +57,6 @@ public class OrderDetail {
         this.updateAt = new Date();
         this.isPresent = true;
     }
+    
+    
 }

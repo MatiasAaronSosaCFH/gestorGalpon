@@ -29,8 +29,10 @@ public class Product {
     private String name;
     @Column(name = "prive")
     private Double price;
-    @OneToMany
-    private List<OrderDetail> orderDitail;
+    
+    @OneToMany()
+    private List<OrderDetail> orderDetail;
+    
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "category_id")
     private Category category;
@@ -52,6 +54,6 @@ public class Product {
         this.isPresent = true;
         this.category = new Category(product.category());
         this.subCategory = new SubCategory(product.subCategory());
-        this.orderDitail = null;
+        this.orderDetail = null;
     }
 }
