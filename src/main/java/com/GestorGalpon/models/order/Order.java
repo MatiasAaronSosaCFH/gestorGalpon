@@ -1,42 +1,39 @@
-package com.GestorGalpon.models.orderdetails;
+package com.GestorGalpon.models.order;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.GestorGalpon.models.orderdetails.dto.RequestOrderDetail;
-import com.GestorGalpon.models.product.Product;
+import com.GestorGalpon.models.order.dto.RequestOrder;
+import com.GestorGalpon.models.orderdetails.OrderDetail;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@EqualsAndHashCode
-@Table(name = "order_details")
+@AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetail {
+@EqualsAndHashCode
+@Table(name = "order_entity")
+public class Order {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
-
-    @Column(name = "items_number")
-    private Integer itemsNumber;
+    
+    @OneToMany
+    private List<OrderDetail> orderDetails;
 
     @Column(name = "sub_total")
     private Double subTotal;
@@ -50,14 +47,14 @@ public class OrderDetail {
     @Column(name = "is_present")
     private Boolean isPresent;
 
+    public Order(RequestOrder order){
 
-    public OrderDetail(RequestOrderDetail requestOrderDetail){
-
-        this.product = new Product(requestOrderDetail.product());
-        this.subTotal = requestOrderDetail.subTotal();
+        this.orderDetails = new ArrayList<>();
+        this.subTotal = order.subTotal();
         this.createAt = new Date();
         this.updateAt = new Date();
         this.isPresent = true;
+
     }
     
     
