@@ -26,6 +26,7 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<?> createCategory(@RequestBody @Valid RequestCategory category){
+        List<ResponseCategory> categories = categoryServiceImp.findCategoriesByName("nombre");
         ResponseCategory response = categoryServiceImp.createCategory(new Category(category));
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

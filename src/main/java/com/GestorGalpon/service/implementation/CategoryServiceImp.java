@@ -33,6 +33,11 @@ public class CategoryServiceImp implements CategoryService {
         return null;
     }
 
+    /**
+     * Este metodo retorna una lista de categorias que matcheen con un nombra
+     *
+     *
+     * */
     @Override
     public List<ResponseCategory> findCategoriesByName(String name) {
         List<Category> categories = categoryRepository.findCategoriesByName(name);

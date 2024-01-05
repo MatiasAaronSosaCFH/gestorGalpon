@@ -1,5 +1,6 @@
 package com.GestorGalpon.models.product;
 
+import com.GestorGalpon.models.image.Image;
 import com.GestorGalpon.models.orderdetails.OrderDetail;
 import com.GestorGalpon.models.category.Category;
 import com.GestorGalpon.models.product.dto.RequestProduct;
@@ -39,6 +40,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "sub_category_id")
     private SubCategory subCategory;
+    @OneToMany
+    private List<Image> images;
     @Column(name = "is_present")
     private Boolean isPresent;
     @Column(name = "create_at")
