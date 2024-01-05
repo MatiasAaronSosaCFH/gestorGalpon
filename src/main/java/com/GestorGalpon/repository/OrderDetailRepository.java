@@ -18,8 +18,11 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail,Long>{
     Optional<OrderDetail> updateOrderDetail(@Param("id") Long orderDetailId,@Param("itemsNumber") Integer itemsNumber,@Param("upDate") Date date);
 
    @Modifying
-   @Query("UPDATE OrderDetail od SET od.isPresent = :isPresent")
-   OrderDetail updateIsPresent(@Param("isPresent") Boolean isPresent);
-    
+   @Query("UPDATE OrderDetail od SET od.isPresent = :isPresent WHERE od.id = :id")
+   Optional<OrderDetail> updateIsPresent(@Param("id") Long id,@Param("isPresent") Boolean isPresent);
+
+   @Modifying
+   @Query("UPDATE OrderDetail od SET od.Product = :productId and od.itemsNumber = :itemsNumber and od.updateAt = :upDate WHERE od.id = :id and od.isPresent = true")
+    Optional<OrderDetail>  updateOrderDetail(@Param("id") Long orderDetailId, @Param("productId") Long productId,@Param("itemsNumber") Integer itemsNumber,@Param("upDate") Date updateAt);
 }
 

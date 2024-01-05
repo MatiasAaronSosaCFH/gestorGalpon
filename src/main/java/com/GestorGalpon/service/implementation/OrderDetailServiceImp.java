@@ -47,14 +47,13 @@ public class OrderDetailServiceImp implements OrderDetailService {
     }
 
     @Override
-    public ResponseOrderDetail updateOrderDetailIsPresent(RequestOrderDetail orderDetail) {
-
-        if(orderDetail.isPresent()){
-            return new ResponseOrderDetail(orderDetailRepository.updateIsPresent(false));
+    public ResponseOrderDetail updateOrderDetailIsPresent(Long orderDetailId, Boolean isPresent) {
+       if(isPresent==true){
+            return new ResponseOrderDetail(orderDetailRepository.updateIsPresent(orderDetailId,false).orElse(null));
         }else{
-            return new ResponseOrderDetail(orderDetailRepository.updateIsPresent(true));
+            return new ResponseOrderDetail(orderDetailRepository.updateIsPresent(orderDetailId,true).orElse(null));
         }
-
-
     }
+
+    
 }
