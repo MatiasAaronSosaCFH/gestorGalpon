@@ -13,7 +13,7 @@ public interface OrderDetailService {
     ResponseOrderDetail findById(Long id);
     ResponseOrderDetail deleteOrderDetailById(Long idOrderDetail);
     ResponseOrderDetail updateOrderDetail(Long orderDetailId, Integer itemsNumber);
-    ResponseOrderDetail updateOrderDetailIsPresent(RequestOrderDetail orderDetail);
+    ResponseOrderDetail updateOrderDetailIsPresent(Long orderDetailId, Boolean isPresent);
 
 
 }
