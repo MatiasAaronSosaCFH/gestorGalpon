@@ -19,4 +19,5 @@ public interface OrderRepository extends JpaRepository<Order,Long>{
     @Modifying
     @Query("UPDATE order o SET o.isPresent = :isPresent WHERE o.id = :id")
     Order updateIsPresent( @Param ("id") Long orderId,@Param("isPresent") Boolean isPresent);
+
 }

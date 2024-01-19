@@ -1,14 +1,13 @@
 package com.GestorGalpon.controller;
-
 import com.GestorGalpon.models.category.Category;
 import com.GestorGalpon.models.category.dto.RequestCategory;
 import com.GestorGalpon.models.category.dto.ResponseCategory;
 import com.GestorGalpon.service.implementation.CategoryServiceImp;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,9 +25,10 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCategory(@RequestBody RequestCategory category){
+    public ResponseEntity<?> createCategory(@RequestBody @Valid RequestCategory category){
+        List<ResponseCategory> categories = categoryServiceImp.findCategoriesByName("nombre");
         ResponseCategory response = categoryServiceImp.createCategory(new Category(category));
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-    
+
 }

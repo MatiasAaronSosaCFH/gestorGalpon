@@ -9,5 +9,4 @@ public record RequestOrderDetail(@NotBlank RequestProduct product,
                                 @NotBlank Integer itemsNumber,
                                 @NotBlank Double subTotal,
                                 @NotBlank Boolean isPresent) {
-    
 }

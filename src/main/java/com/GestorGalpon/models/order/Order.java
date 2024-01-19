@@ -1,5 +1,6 @@
 package com.GestorGalpon.models.order;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +15,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @Data
@@ -25,10 +28,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "order_entity")
+
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id")
     private Long id;
     
