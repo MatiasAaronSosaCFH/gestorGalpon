@@ -17,7 +17,7 @@ public record ResponseOrder(Long id,
             this(   order.getId(),
                     order.getOrderDetails().stream().map(ResponseOrderDetail :: new).toList(),
                     order.getSubTotal(),
-                    order.getCreateAt(),
-                    order.getUpdateAt());
+                    (Date) order.getCreateAt(),
+                    (Date) order.getUpdateAt());
         }
 }

@@ -8,6 +8,7 @@ import com.GestorGalpon.service.abstraction.SubCategoryService;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,7 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SubCategoryServiceImp implements SubCategoryService {
-  
+
     private final SubCategoryRepository subCategoryRepository;
 
     @Override
