@@ -67,6 +67,17 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
     
+    @PutMapping("/mod-ispresent/{id}")
+    public ResponseEntity<?> updateIsPresent(@RequestParam @NotBlank Long orderId,
+                                        @RequestParam @NotBlank Boolean isPresent) {
+        ResponseOrder order = orderServiceImp.updateIsPresent(orderId, isPresent);
+        if(order == null){return new ResponseEntity<>("Order not found", HttpStatus.NOT_FOUND);}
+
+        
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+    
+    
         
     }
     

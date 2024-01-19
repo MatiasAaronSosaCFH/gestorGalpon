@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.GestorGalpon.models.order.Order;
 import com.GestorGalpon.models.order.dto.RequestOrder;
 import com.GestorGalpon.models.order.dto.ResponseOrder;
+import com.GestorGalpon.models.orderdetails.OrderDetail;
+import com.GestorGalpon.repository.OrderDetailRepository;
 import com.GestorGalpon.repository.OrderRepository;
 import com.GestorGalpon.service.abstraction.OrderService;
 
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderServiceImp implements OrderService{
 
     private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
     @Override
     public ResponseOrder createOrder(RequestOrder order) {
         return new ResponseOrder(orderRepository.save(new Order(order)));
@@ -51,8 +54,10 @@ public class OrderServiceImp implements OrderService{
 
     @Override
     public ResponseOrder updateOrder(Long orderId, Long orderDetailId, Long productId, Integer itemsNumber) {
+        
+        OrderDetail orderDetail = orderDetailRepository.updateOrderDetail(orderDetailId, productId, itemsNumber, new Date()).orElse(null);
 
-        return new ResponseOrder(orderRepository.updateOrder(orderId,orderDetailId,productId,itemsNumber,new Date()));;
+        return new ResponseOrder(orderRepository.updateOrder(orderId, orderDetailId).orElse(null));
     }
     
 }

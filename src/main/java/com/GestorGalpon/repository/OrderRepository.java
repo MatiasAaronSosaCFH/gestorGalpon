@@ -22,12 +22,14 @@ public interface OrderRepository extends JpaRepository<Order,Long>{
     List<Order> findAllOrderAvailable();
 
    @Modifying
-    @Query("UPDATE order o SET o.isPresent = :isPresent WHERE o.id = :id")
+    @Query("UPDATE Order o SET o.isPresent = :isPresent WHERE o.id = :id")
 
     Optional<Order> updateIsPresent(@Param ("id") Long orderId, @Param("isPresent") Boolean isPresent);
 
-@Modifying
-   @Query("UPDATE order o SET o.orderDetail =:orderDetailId, o.Product = :productId, o.itemsNumber = :itemsNumber, o.updateAt = :upDate WHERE od.id = :id and od.isPresent = true")
-    Optional<Order>  updateOrder(@Param("id") Long orderId ,@Param("orderDetailId") Long orderDetailId, @Param("productId") Long productId,@Param("itemsNumber") Integer itemsNumber,@Param("upDate") Date updateAt);
+
+    @Modifying
+    @Query("UPDATE Order o SET o.orderDetails = (SELECT od FROM OrderDetail od WHERE od.id = :orderDetailId) WHERE o.id =:orderId")
+    Optional<Order> updateOrder(@Param("orderId") Long orderId,
+                                @Param("orderDetailId") Long orderDetailId);
 
 }
