@@ -2,6 +2,7 @@ package com.GestorGalpon.repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,8 +18,8 @@ public interface OrderRepository extends JpaRepository<Order,Long>{
     @Query("SELECT o FROM Order o WHERE o.isPresent = true")
     List<Order> findAllOrderAvailable();
 
-    @Modifying
+   /*@Modifying
     @Query("UPDATE order o SET o.isPresent = :isPresent WHERE o.id = :id")
-    Order updateIsPresent( @Param ("id") Long orderId,@Param("isPresent") Boolean isPresent);
-
+    Optional<Order> updateIsPresent(@Param ("id") Long orderId, @Param("isPresent") Boolean isPresent);
+*/
 }

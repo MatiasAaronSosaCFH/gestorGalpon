@@ -8,6 +8,7 @@ import com.GestorGalpon.repository.OrderRepository;
 import com.GestorGalpon.repository.ProductRepository;
 import com.GestorGalpon.service.abstraction.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

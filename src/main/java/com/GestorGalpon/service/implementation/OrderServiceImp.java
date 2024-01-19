@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.GestorGalpon.models.order.Order;
@@ -17,29 +18,30 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class OrderServiceImp implements OrderService{
 
     private final OrderRepository orderRepository;
+
     private final OrderDetailRepository orderDetailRepository;
     @Override
     public ResponseOrder createOrder(RequestOrder order) {
         return new ResponseOrder(orderRepository.save(new Order(order)));
     }
 
-    @Override
+   /*@Override
     public ResponseOrder updateIsPresent(Long orderId, Boolean isPresent) {
 
       
         if(isPresent == true){
-            return new ResponseOrder(orderRepository.updateIsPresent(orderId,false));
+            return new ResponseOrder(orderRepository.updateIsPresent(orderId,false).orElse(null));
         }else{
-            return new ResponseOrder(orderRepository.updateIsPresent(orderId,true));
+            return new ResponseOrder(orderRepository.updateIsPresent(orderId,true).orElse(null));
         }
 
 
-    }
+    } */ 
 
     @Override
     public ResponseOrder findById(Long orderId) {
@@ -59,7 +61,7 @@ public class OrderServiceImp implements OrderService{
 
         if(order.isPresent()){
 
-            orderDetailRepository.updateOrderDetail(orderDetailId, productId, itemsNumber, new Date());
+            orderDetailRepository.updateOrderDetail(orderDetailId,itemsNumber, new Date());
             
         return new ResponseOrder(order.get());            
         }
